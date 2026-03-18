@@ -1,4 +1,4 @@
-package org.example.internal_api.global.config;
+package org.example.internal_api.resttemplate.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.internal_api.global.error.CustomException;
@@ -23,13 +23,16 @@ import java.time.Duration;
 @Slf4j
 @Configuration
 public class RiotRestTemplateConfig {
+    @Value("${riot.api.url}")
+    private String riotUrl;
+
     @Value("${riot.api.key}")
     private String riotKey;
 
     @Bean
     public RestTemplate riotRestTemplate(RestTemplateBuilder builder) {
         return builder
-                .rootUri("https://asia.api.riotgames.com")          // 베이스 url 고정
+                .rootUri(riotUrl)          // 베이스 url 고정
                 .connectTimeout(Duration.ofSeconds(3))              // 3초간 연결 시도(연결 안 되면 포기)
                 .readTimeout(Duration.ofSeconds(5))                 // 5초간 읽기 시도(응답 안 오면 포기)
                 .additionalInterceptors(riotAuthInterceptor())      // 헤더 스텔스 주입

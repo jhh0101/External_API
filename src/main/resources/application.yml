@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:53306/internal_api_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:13306/external_api_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
     username: user
     password: user1234
 
@@ -25,4 +25,6 @@ server:
 
 riot:
   api:
+    url: https://asia.api.riotgames.com
     key: ${RIOT_API_KEY}
+    champ: http://ddragon.leagueoflegends.com/cdn/14.5.1/data/ko_KR/champion.json
